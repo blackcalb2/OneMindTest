@@ -9,11 +9,11 @@ type userNameDto = {
 };
 
 @Injectable()
-export class UsersService {
-  private readonly userData = userDataFile;
+export class DataService {
+  private readonly data = userDataFile;
 
   getAnimalList(): string[] {
-    return userDataFile
+    return this.data
       .reduce((acum, user) => {
         return union(acum, user.animals);
       }, [])
@@ -21,7 +21,7 @@ export class UsersService {
   }
 
   getUsersByAnimals(animalName: string): userNameDto[] {
-    return this.userData
+    return this.data
       .filter((user) => user.isActive)
       .filter((user) => user.animals.includes(animalName))
       .map((user) => ({
