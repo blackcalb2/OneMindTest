@@ -10,11 +10,21 @@ export class DataController {
     return this.dataService.getAnimalList();
   }
 
+  @Get('animal/rank')
+  async animaRank() {
+    return this.dataService.getAnimalRank();
+  }
+
   @Get('animal/top:n/:name')
   async topTenUser(
     @Param('name') name: string,
     @Param('n', ParseIntPipe) n: number,
   ) {
     return this.dataService.getUsersByAnimals(name).slice(0, n);
+  }
+
+  @Get('users')
+  async getUsersInfo() {
+    return this.dataService.getUserInfo();
   }
 }
